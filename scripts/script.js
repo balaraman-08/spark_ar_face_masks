@@ -5,10 +5,10 @@ const Materials = require('Materials');
 const Patches = require('Patches');
 
 Promise.all([
-    Textures.findFirst('maskJack'),
     Textures.findFirst('jokerMask'),
-    Textures.findFirst('maskLeto'),
     Textures.findFirst('maskPhoenix'),
+    Textures.findFirst('maskJack'),
+    Textures.findFirst('maskLeto'),
     Materials.findFirst('faceMaterial')
 ]).then(onReady);
 
@@ -45,7 +45,7 @@ function onReady(assets) {
 
     picker.selectedIndex.monitor().subscribe(function(index) {
       Patches.inputs.setScalar('selection', index.newValue);
-      Diagnostics.log(faceMaterial);
-      faceMaterial.baseColor = configuration.items[index.newValue].image_texture;
+      //Diagnostics.log(faceMaterial);
+      faceMaterial.diffuse = configuration.items[index.newValue].image_texture;
     });
 }
